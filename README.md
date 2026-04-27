@@ -2,7 +2,7 @@
 
 **Trust layer for AI outputs.** Real-Time Verifier checks URLs, JSON, emails, dates, numbers, and claims, then returns confidence metadata instead of blind trust.
 
-Demo: **Watch the demo:** [Real-Time Verifier](https://christopherhammer.dev/assets/videos/narrated/project-demos/real-time-verifier-narrated.mp4)
+**Demo:** [Real-Time Verifier](https://christopherhammer.dev/assets/videos/narrated/project-demos/real-time-verifier-narrated.mp4)
 
 ## Who Uses It
 
