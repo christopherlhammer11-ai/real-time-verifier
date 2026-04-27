@@ -1,60 +1,62 @@
 # Real-Time Verifier
 
-CLI tool for instant verification of URLs, JSON, emails, dates, and claims with trust scoring.
+**Trust layer for AI outputs.** Real-Time Verifier checks URLs, JSON, emails, dates, numbers, and claims, then returns confidence metadata instead of blind trust.
 
-<!-- badges -->
+Demo: **Watch the demo:** [Real-Time Verifier](https://christopherhammer.dev/assets/videos/narrated/project-demos/real-time-verifier-narrated.mp4)
+
+## Who Uses It
+
+- AI agents that generate links, JSON, summaries, or claims
+- Research and news workflows
+- Sales or support systems that need valid contact data
+- Any app that should verify output before sending it downstream
 
 ## What It Does
 
-Real-Time Verifier (`rtv`) checks URLs, email addresses, JSON validity, dates, numbers, and claims in real time, returning a trust score from 0–1 and detailed reasoning for each verification.
+- Checks URL liveness
+- Validates JSON structure
+- Validates emails, dates, phone-like values, and numeric claims
+- Supports offline validation for basic checks
+- Returns trust scores, reasons, and errors
 
-## Features
+## Why It Matters
 
-- **Trust Scoring**: 0–1 confidence level for every check
-- **Online & Offline Modes**: verify() for live checks, verifyOffline() for local-only validation
-- **Multi-Format Support**: URLs, JSON, emails, dates, phone numbers, claims
-- **Threat Detection**: Suspicious TLDs, disposable email services, unreasonable numbers
-- **Fast Offline**: verifyOffline() works without network for basic format validation
-- **Detailed Results**: Reasoning, error messages, and confidence explanations
+AI output can sound confident while being wrong. Verifier turns trust into an explicit step: check the generated artifact, score it, and decide whether to accept, retry, or route to review.
+
+## Example
+
+```bash
+rtv verify-url https://example.com
+rtv verify-json '{"status":"ok"}'
+rtv verify-email user@example.com
+```
+
+Programmatic usage:
+
+```ts
+import { verify } from 'real-time-verifier';
+
+const result = await verify('https://example.com', { type: 'url' });
+console.log(result.trustScore, result.reasoning);
+```
 
 ## Quick Start
 
 ```bash
-npm install -g real-time-verifier
-rtv --help
+npm install
+npm run build
+npm test
 ```
 
-## Usage
+## Portfolio Context
 
-```bash
-# Verify a URL
-rtv verify-url https://example.com
+Real-Time Verifier is the quality-control layer for agents like HammerLock and Craig. It shows production-minded thinking around hallucinations, broken links, malformed data, and trust scoring.
 
-# Check an email
-rtv verify-email user@domain.com
+---
 
-# Validate JSON
-rtv verify-json '{"key": "value"}'
+Built by **Christopher L. Hammer** - self-taught AI/product builder shipping local-first tools, demos, and real product surfaces.
 
-# Check a claim (offline)
-rtv verify-offline --claim "2 + 2 = 4"
+- Portfolio: [christopherhammer.dev](https://christopherhammer.dev)
+- Proof demos: [https://christopherhammer.dev#proof](https://christopherhammer.dev#proof)
+- GitHub: [christopherlhammer11-ai](https://github.com/christopherlhammer11-ai)
 
-# Batch verify (from file)
-rtv batch verification-list.txt
-```
-
-## Tech Stack
-
-- Commander.js (CLI framework)
-- Regex (format validation)
-- Fetch API (live verification)
-
-## Part of Genesis Marketplace
-
-Ensures data integrity across all Genesis agent skill chains.
-
-## Author
-
-Christopher L. Hammer  
-GitHub: [christopherlhammer11-ai](https://github.com/christopherlhammer11-ai)  
-Sites: [hammercg.com](https://hammercg.com) | [hammerlockai.com](https://hammerlockai.com)
